@@ -24,7 +24,7 @@ spec:
             - name: DB_URL
               value: postgres://postgres:postgres@localhost/app
             - name: PDS
-              value: http://rsky
+              value: https://web5.bbs.fans
           name: bbs
           command: ['bbs']
           args:
