@@ -1,0 +1,177 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: rsky
+    app.kubernetes.io/name: rsky
+  name: rsky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: rsky
+      app.kubernetes.io/name: rsky
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: rsky
+        app.kubernetes.io/name: rsky
+    spec:
+      containers:
+        - image: registry.devops.rivtower.com/web5/rsky:v0.1.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: LOG_ENABLED
+              value: "true"
+            - name: LOG_LEVEL
+              value: ${LOG_LEVEL}
+            - name: PDS_ADMIN_PASSWORD
+              value: ${PDS_ADMIN_PASSWORD}
+            - name: DATABASE_URL
+              value: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/pds
+            - name: PDS_BLOBSTORE_DISK_LOCATION
+              value: /pds/blobs
+            - name: PDS_BSKY_APP_VIEW_DID
+              value: did:web:${APP_HOSTNAME}
+            - name: PDS_BSKY_APP_VIEW_URL
+              value: https://${APP_HOSTNAME}
+            - name: PDS_ENABLE_DID_DOC_WITH_SESSION
+              value: "true"
+            - name: PDS_HOSTNAME
+              value: ${PDS_HOSTNAME}
+            - name: PDS_INVITE_INTERVAL
+              value: "604800000"
+            - name: PDS_INVITE_REQUIRED
+              value: "false"
+            - name: PDS_JWT_SECRET
+              value: ${PDS_JWT_SECRET}
+            - name: PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX
+              value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
+            - name: PDS_PORT
+              value: "${PDS_PORT}"
+            - name: PORT
+              value: "${PDS_PORT}"
+            - name: PDS_SERVICE_DID
+              value: did:web:${PDS_HOSTNAME}
+            - name: PDS_JWT_KEY_K256_PRIVATE_KEY_HEX
+              value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
+            - name: PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX
+              value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
+            - name: PDS_REPO_SIGNING_KEY_K256_PRIVATE_KEY_HEX
+              value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
+            - name: PDS_SERVICE_HANDLE_DOMAINS
+              value: ".test"
+            - name: PDS_HOSTNAME
+              value: "test"
+            - name: PDS_INVITE_REQUIRED
+              value: false
+            - name: AWS_ENDPOINT
+              value: "http://localhost:4566"
+            - name: AWS_ASSCESS_KEY_ID
+              value: test
+            - name: AWS_SECRET_ASSCESS_KEY
+              value: test
+            - name: AWS_DEFAULT_REGION
+              value: us-east-1
+            - name: AWS_PROVIDE_NAME
+              value: localstack
+            - name: ROCKET_PORT
+              value: 8000
+            - name: ROCKET_ADDRESS
+              value: "0.0.0.0"
+          name: pds
+          command:
+            - /bin/sh
+            - -c
+            - ./rsky
+          ports:
+            - containerPort: ${PDS_PORT}
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /pds
+              name: pds
+        - image: m.daocloud.io/docker.io/postgres:17-bookworm
+          imagePullPolicy: IfNotPresent
+          name: database
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: pds
+            - name: POSTGRES_INITDB_ARGS
+              value: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+          ports:
+            - containerPort: 5432
+              name: postgres
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: database
+        - image: m.daocloud.io/docker.io/localstack/localstack:latest
+          imagePullPolicy: IfNotPresent
+          name: database
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: "test"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "test"
+            - name: AWS_DEFAULT_REGION
+              value: "us-east-1"
+            - name: SERVICES
+              value: "s3"
+          ports:
+            - containerPort: 4566
+              name: localstack
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /var/lib/localstack/data
+              name: database
+  volumeClaimTemplates:
+    - metadata:
+        name: pds
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: nfs-client
+        resources:
+          requests:
+            storage: 10Gi
+    - metadata:
+        name: database
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: nfs-client
+        resources:
+          requests:
+            storage: 100Gi
+            
+            
+            
+# export PGPASSWORD='password' && psql -U pg -h 127.0.0.1 -p 5433 -d postgres -f rsky/migrations/2023-11-15-004814_pds_init/up.sql
+# export PGPASSWORD='password' && psql -U pg -h 127.0.0.1 -p 5433 -d postgres -f rsky/migrations/2024-03-20-042639_account_deactivation/up.sql

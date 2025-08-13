@@ -18,13 +18,13 @@ spec:
         app.kubernetes.io/name: bbs
     spec:
       containers:
-        - image: ghcr.io/web5fans/bbs:v0.2.0
+        - image: registry.devops.rivtower.com/web5/bbs:v0.2.3
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_URL
               value: postgres://postgres:postgres@localhost/app
             - name: PDS
-              value: http://pds
+              value: http://rsky
           name: bbs
           command: ["bbs"]
           args: [
