@@ -45,8 +45,6 @@ spec:
               value: "false"
             - name: PDS_JWT_SECRET
               value: ${PDS_JWT_SECRET}
-            - name: PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX
-              value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
             - name: PDS_PORT
               value: "${PDS_PORT}"
             - name: PORT
@@ -61,10 +59,6 @@ spec:
               value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
             - name: PDS_SERVICE_HANDLE_DOMAINS
               value: ".test"
-            - name: PDS_HOSTNAME
-              value: "test"
-            - name: PDS_INVITE_REQUIRED
-              value: "false"
             - name: AWS_ENDPOINT
               value: "http://localhost:4566"
             - name: AWS_ASSCESS_KEY_ID
