@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: bbs
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/bbs:v0.2.4
+        - image: registry.devops.rivtower.com/web5/bbs:v0.2.5
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_URL
