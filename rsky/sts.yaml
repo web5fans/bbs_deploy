@@ -28,7 +28,7 @@ spec:
             - name: PDS_ADMIN_PASSWORD
               value: ${PDS_ADMIN_PASSWORD}
             - name: DATABASE_URL
-              value: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/pds
+              value: postgres://postgres:postgres@localhost:5432/pds
             - name: PDS_BLOBSTORE_DISK_LOCATION
               value: /pds/blobs
             - name: PDS_BSKY_APP_VIEW_DID
