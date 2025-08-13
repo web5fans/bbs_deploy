@@ -151,7 +151,7 @@ spec:
     - metadata:
         name: pds
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: [ "ReadWriteOnce" ]
         storageClassName: local-path
         resources:
           requests:
@@ -159,7 +159,7 @@ spec:
     - metadata:
         name: database
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: [ "ReadWriteOnce" ]
         storageClassName: local-path
         resources:
           requests:
@@ -167,7 +167,7 @@ spec:
     - metadata:
         name: localstack
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: [ "ReadWriteOnce" ]
         storageClassName: local-path
         resources:
           requests:
