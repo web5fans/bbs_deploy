@@ -26,17 +26,21 @@ spec:
             - name: PDS
               value: http://rsky
           name: bbs
-          command: ["bbs"]
-          args: [
-            "--log-filter", "debug,hyper_util=info,sqlx=info",
-            "--db-url", "$(DB_URL)",
-            "--pds", "$(PDS)"
-          ]
+          command: ['bbs']
+          args:
+            [
+              '--log-filter',
+              'debug,hyper_util=info,sqlx=info',
+              '--db-url',
+              '$(DB_URL)',
+              '--pds',
+              '$(PDS)',
+            ]
           ports:
             - containerPort: 8080
               name: http
               protocol: TCP
-          resources: 
+          resources:
             limits:
               cpu: 4000m
               memory: 4096Mi
@@ -55,12 +59,12 @@ spec:
             - name: POSTGRES_DB
               value: app
             - name: POSTGRES_INITDB_ARGS
-              value: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+              value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
             - containerPort: 5432
               name: postgres
               protocol: TCP
-          resources: 
+          resources:
             limits:
               cpu: 4000m
               memory: 4096Mi
@@ -75,7 +79,7 @@ spec:
     - metadata:
         name: database
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ['ReadWriteOnce']
         storageClassName: local-path
         resources:
           requests:

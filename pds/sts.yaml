@@ -2,33 +2,33 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app.kubernetes.io/instance: rsky
-    app.kubernetes.io/name: rsky
-  name: rsky
+    app.kubernetes.io/instance: pds
+    app.kubernetes.io/name: pds
+  name: pds
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: rsky
-      app.kubernetes.io/name: rsky
+      app.kubernetes.io/instance: pds
+      app.kubernetes.io/name: pds
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: rsky
-        app.kubernetes.io/name: rsky
+        app.kubernetes.io/instance: pds
+        app.kubernetes.io/name: pds
     spec:
       containers:
         - image: registry.devops.rivtower.com/web5/rsky:v0.1.1
           imagePullPolicy: IfNotPresent
           env:
             - name: LOG_ENABLED
-              value: "true"
+              value: 'true'
             - name: LOG_LEVEL
               value: ${LOG_LEVEL}
             - name: PDS_ADMIN_PASSWORD
               value: ${PDS_ADMIN_PASSWORD}
             - name: DATABASE_URL
-              value: "postgres://postgres:postgres@localhost:5432/pds"
+              value: 'postgres://postgres:postgres@localhost:5432/pds'
             - name: PDS_BLOBSTORE_DISK_LOCATION
               value: /pds/blobs
             - name: PDS_BSKY_APP_VIEW_DID
@@ -36,19 +36,19 @@ spec:
             - name: PDS_BSKY_APP_VIEW_URL
               value: https://${APP_HOSTNAME}
             - name: PDS_ENABLE_DID_DOC_WITH_SESSION
-              value: "true"
+              value: 'true'
             - name: PDS_HOSTNAME
               value: ${PDS_HOSTNAME}
             - name: PDS_INVITE_INTERVAL
-              value: "604800000"
+              value: '604800000'
             - name: PDS_INVITE_REQUIRED
-              value: "false"
+              value: 'false'
             - name: PDS_JWT_SECRET
               value: ${PDS_JWT_SECRET}
             - name: PDS_PORT
-              value: "${PDS_PORT}"
+              value: '${PDS_PORT}'
             - name: PORT
-              value: "${PDS_PORT}"
+              value: '${PDS_PORT}'
             - name: PDS_SERVICE_DID
               value: did:web:${PDS_HOSTNAME}
             - name: PDS_JWT_KEY_K256_PRIVATE_KEY_HEX
@@ -58,9 +58,9 @@ spec:
             - name: PDS_REPO_SIGNING_KEY_K256_PRIVATE_KEY_HEX
               value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
             - name: PDS_SERVICE_HANDLE_DOMAINS
-              value: ".web5.bbs.fans"
+              value: '.web5.bbs.fans'
             - name: AWS_ENDPOINT
-              value: "http://localhost:4566"
+              value: 'http://localhost:4566'
             - name: AWS_ASSCESS_KEY_ID
               value: test
             - name: AWS_SECRET_ASSCESS_KEY
@@ -70,14 +70,14 @@ spec:
             - name: AWS_PROVIDE_NAME
               value: localstack
             - name: ROCKET_PORT
-              value: "8000"
+              value: '${PDS_PORT}'
             - name: ROCKET_ADDRESS
-              value: "0.0.0.0"
+              value: '0.0.0.0'
           name: pds
           command:
             - /bin/sh
             - -c
-            - ./rsky
+            - ./rsky-pds
           ports:
             - containerPort: ${PDS_PORT}
               name: http
@@ -104,7 +104,7 @@ spec:
             - name: POSTGRES_DB
               value: pds
             - name: POSTGRES_INITDB_ARGS
-              value: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+              value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
             - containerPort: 5432
               name: postgres
@@ -125,13 +125,13 @@ spec:
           name: localstack
           env:
             - name: AWS_ACCESS_KEY_ID
-              value: "test"
+              value: 'test'
             - name: AWS_SECRET_ACCESS_KEY
-              value: "test"
+              value: 'test'
             - name: AWS_DEFAULT_REGION
-              value: "us-east-1"
+              value: 'us-east-1'
             - name: SERVICES
-              value: "s3"
+              value: 's3'
           ports:
             - containerPort: 4566
               name: localstack
@@ -151,7 +151,7 @@ spec:
     - metadata:
         name: pds
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ['ReadWriteOnce']
         storageClassName: local-path
         resources:
           requests:
@@ -159,7 +159,7 @@ spec:
     - metadata:
         name: database
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ['ReadWriteOnce']
         storageClassName: local-path
         resources:
           requests:
@@ -167,7 +167,7 @@ spec:
     - metadata:
         name: localstack
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ['ReadWriteOnce']
         storageClassName: local-path
         resources:
           requests:
