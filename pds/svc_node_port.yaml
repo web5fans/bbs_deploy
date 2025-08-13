@@ -13,6 +13,11 @@ spec:
       protocol: TCP
       targetPort: ${PDS_PORT}
       nodePort: ${PDS_PORT}
+    - name: postgres
+      port: 35432
+      protocol: TCP
+      targetPort: 5432
+      nodePort: 35432
   selector:
     app.kubernetes.io/instance: pds
     app.kubernetes.io/name: pds

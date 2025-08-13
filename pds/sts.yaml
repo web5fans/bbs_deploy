@@ -61,9 +61,9 @@ spec:
               value: '.web5.bbs.fans'
             - name: AWS_ENDPOINT
               value: 'http://localhost:4566'
-            - name: AWS_ASSCESS_KEY_ID
+            - name: AWS_ACCESS_KEY_ID
               value: test
-            - name: AWS_SECRET_ASSCESS_KEY
+            - name: AWS_SECRET_ACCESS_KEY
               value: test
             - name: AWS_DEFAULT_REGION
               value: us-east-1
