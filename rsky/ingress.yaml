@@ -4,8 +4,8 @@ metadata:
   name: rsky-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: "nginx"
 spec:
+  ingressClassName: "nginx"
   rules:
     - host: web5.bbs.fans
       http:
@@ -14,7 +14,7 @@ spec:
               service:
                 name: rsky
                 port:
-                  number: 32583
+                  number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
     - host: "*.web5.bbs.fans"
@@ -24,7 +24,7 @@ spec:
               service:
                 name: rsky
                 port:
-                  number: 32583
+                  number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
   tls:
