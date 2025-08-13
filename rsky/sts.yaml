@@ -64,7 +64,7 @@ spec:
             - name: PDS_HOSTNAME
               value: "test"
             - name: PDS_INVITE_REQUIRED
-              value: false
+              value: "false"
             - name: AWS_ENDPOINT
               value: "http://localhost:4566"
             - name: AWS_ASSCESS_KEY_ID
@@ -76,7 +76,7 @@ spec:
             - name: AWS_PROVIDE_NAME
               value: localstack
             - name: ROCKET_PORT
-              value: 8000
+              value: "8000"
             - name: ROCKET_ADDRESS
               value: "0.0.0.0"
           name: pds
