@@ -34,6 +34,17 @@ echo "
 --- /api/post/list ---
 response = $rsp"
 
+export rsp=$(curl --insecure -s $BASE_URL/api/post/top \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+            "section_id": 0
+        }'
+)
+echo "
+--- /api/post/top ---
+response = $rsp"
+
 export rsp=$(curl --insecure -s $BASE_URL/api/section/list \
     -X GET \
     -H "Content-Type: application/json" \
