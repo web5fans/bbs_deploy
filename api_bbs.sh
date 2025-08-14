@@ -25,7 +25,7 @@ export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
     -d '{
             "section_id": "1",
             "repo": "",
-            "limit": 1,
+            "limit": "1",
             "cursor": "2025-08-12 05:25:37",
             "q": ""
         }'
