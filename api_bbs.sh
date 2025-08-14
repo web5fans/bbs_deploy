@@ -23,7 +23,7 @@ export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
-            "section_id": 0,
+            "section_id": "1",
             "repo": "",
             "limit": 1,
             "cursor": "2025-08-12 05:25:37",
@@ -38,7 +38,7 @@ export rsp=$(curl --insecure -s $BASE_URL/api/post/top \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
-            "section_id": 0
+            "section_id": "1"
         }'
 )
 echo "
