@@ -69,8 +69,7 @@ response = $rsp"
 
 export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
     -X GET \
-    -H "Content-Type: application/json" \
-    | jq .
+    -H "Content-Type: application/json"
 )
 echo "
 --- /api/section/detail ---
