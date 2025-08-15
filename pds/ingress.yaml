@@ -27,10 +27,23 @@ spec:
                   number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
+    - host: res.bbs.fans
+      http:
+        paths:
+          - backend:
+              service:
+                name: res
+                port:
+                  number: 4566
+            path: /
+            pathType: ImplementationSpecific
   tls:
     - hosts:
         - web5.bbs.fans
       secretName: web5
     - hosts:
         - '*.web5.bbs.fans'
+      secretName: web5
+    - hosts:
+        - res.bbs.fans
       secretName: web5

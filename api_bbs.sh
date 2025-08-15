@@ -75,7 +75,7 @@ echo "
 --- /api/section/detail ---
 response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL'/api/section/list?repo=did:web5:3q5csyiwlhn4yanjsslm7k6donvl3ohl' \
+export rsp=$(curl --insecure -s $BASE_URL'/api/section/list?repo=did:web5:5todaearszbwxyrluncvvx6by5ofuauj' \
     -X GET \
     -H "Content-Type: application/json"
 )
