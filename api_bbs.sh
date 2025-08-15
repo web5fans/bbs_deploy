@@ -53,24 +53,32 @@ export did=
 # --- /api/post/detail ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL/api/reply/list \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-            "root": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
-            "parent": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
-            "page": 1,
-            "per_page": 20
-        }'
-)
-echo "
---- /api/reply/list ---
-response = $rsp"
-
-# export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
-#     -X GET \
-#     -H "Content-Type: application/json"
+# export rsp=$(curl --insecure -s $BASE_URL/api/reply/list \
+#     -X POST \
+#     -H "Content-Type: application/json" \
+#     -d '{
+#             "root": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
+#             "parent": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
+#             "page": 1,
+#             "per_page": 20
+#         }'
 # )
 # echo "
-# --- /api/section/detail ---
+# --- /api/reply/list ---
 # response = $rsp"
+
+export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
+    -X GET \
+    -H "Content-Type: application/json"
+)
+echo "
+--- /api/section/detail ---
+response = $rsp"
+
+export rsp=$(curl --insecure -s $BASE_URL'/api/section/list?repo=did:web5:3q5csyiwlhn4yanjsslm7k6donvl3ohl' \
+    -X GET \
+    -H "Content-Type: application/json"
+)
+echo "
+--- /api/section/list ---
+response = $rsp"
