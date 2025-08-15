@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BASE_URL=http://localhost:8080
+export BASE_URL=https://app.bbs.fans
 export TOKEN=
 export did=
 
