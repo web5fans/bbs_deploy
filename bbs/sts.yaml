@@ -26,7 +26,7 @@ spec:
             - name: PDS
               value: https://web5.bbs.fans
             - name: WHITELIST
-              value: did:web5:63ht24lvefidhzhfrt37imyyhjj76cyi,did:web5:fhamx6wce32bykmhtx6nmtpjmugoets6
+              value: did:web5:5todaearszbwxyrluncvvx6by5ofuauj,did:web5:63ht24lvefidhzhfrt37imyyhjj76cyi,did:web5:fhamx6wce32bykmhtx6nmtpjmugoets6
           name: bbs
           command: ['bbs']
           args:
@@ -37,7 +37,7 @@ spec:
               '$(DB_URL)',
               '--pds',
               '$(PDS)',
-              '--whitelist',
+              '-w',
               '$(WHITELIST)',
             ]
           ports:
