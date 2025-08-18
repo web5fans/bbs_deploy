@@ -6,6 +6,6 @@ Web5 技术是什么，可以详细和我说说吗？Web5 技术是什么，可�
 UPDATE public."section"
 	SET description='CKB RFC 讨论 '
 	WHERE id=2;
-UPDATE public."post"
+UPDATE public."reply"
 	SET section_id=1
 	WHERE section_id IS NULL;
