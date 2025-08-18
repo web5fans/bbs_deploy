@@ -10,5 +10,5 @@ UPDATE public."reply"
 	SET section_id=1
 	WHERE section_id IS NULL;
 UPDATE public."post"
-	SET visited=current_timestamp()
+	SET visited=current_timestamp
 	WHERE visited IS NULL;
