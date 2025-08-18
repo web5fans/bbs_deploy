@@ -18,13 +18,15 @@ spec:
         app.kubernetes.io/name: bbs
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/bbs:v0.2.44
+        - image: registry.devops.rivtower.com/web5/bbs:v0.2.46
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_URL
               value: postgres://postgres:postgres@localhost/app
             - name: PDS
               value: https://web5.bbs.fans
+            - name: WHITELIST
+              value: did:web5:63ht24lvefidhzhfrt37imyyhjj76cyi,did:web5:fhamx6wce32bykmhtx6nmtpjmugoets6
           name: bbs
           command: ['bbs']
           args:
@@ -35,6 +37,8 @@ spec:
               '$(DB_URL)',
               '--pds',
               '$(PDS)',
+              '--whitelist',
+              '$(WHITELIST)',
             ]
           ports:
             - containerPort: 8080
