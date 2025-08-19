@@ -26,7 +26,7 @@ spec:
             - name: PDS
               value: https://web5.bbs.fans
             - name: WHITELIST
-              value: did:web5:5todaearszbwxyrluncvvx6by5ofuauj,did:web5:63ht24lvefidhzhfrt37imyyhjj76cyi,did:web5:fhamx6wce32bykmhtx6nmtpjmugoets6,did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4,did:web5:nwgmp2ewq3l3ls4idrf3pi6b5khhojnl,did:web5:nsaqghi4gysykgew7wgvwaurp4yeaf4j,did:web5:ltdrbjytid2vq2tasntrjnuitgin6e6s
+              value: did:web5:5todaearszbwxyrluncvvx6by5ofuauj,did:web5:63ht24lvefidhzhfrt37imyyhjj76cyi,did:web5:fhamx6wce32bykmhtx6nmtpjmugoets6,did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4,did:web5:nwgmp2ewq3l3ls4idrf3pi6b5khhojnl,did:web5:nsaqghi4gysykgew7wgvwaurp4yeaf4j,did:web5:ltdrbjytid2vq2tasntrjnuitgin6e6s,did:web5:vcm3yb7wk5uxdj7f4nsweowkokmwmdyv
           name: bbs
           command: ['bbs']
           args:
