@@ -67,18 +67,26 @@ export did=
 # --- /api/reply/list ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
-    -X GET \
-    -H "Content-Type: application/json"
-)
-echo "
---- /api/section/detail ---
-response = $rsp"
+# export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
+#     -X GET \
+#     -H "Content-Type: application/json"
+# )
+# echo "
+# --- /api/section/detail ---
+# response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL'/api/section/list?repo=did:web5:5todaearszbwxyrluncvvx6by5ofuauj' \
+# export rsp=$(curl --insecure -s $BASE_URL'/api/section/list?repo=did:web5:5todaearszbwxyrluncvvx6by5ofuauj' \
+#     -X GET \
+#     -H "Content-Type: application/json"
+# )
+# echo "
+# --- /api/section/list ---
+# response = $rsp"
+
+export rsp=$(curl --insecure -s $BASE_URL'/api/repo/profile?repo=did:web5:5todaearszbwxyrluncvvx6by5ofuauj' \
     -X GET \
     -H "Content-Type: application/json"
 )
 echo "
---- /api/section/list ---
+--- /api/repo/profile ---
 response = $rsp"
