@@ -26,7 +26,7 @@ spec:
             - name: PDS
               value: https://web5.bbs.fans
             - name: WHITELIST
-              value: did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil
+              value: did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil,did:web5:4uki5qsygxg2x2hjtjr4tydgympm5mns,did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv
           name: bbs
           command: ['bbs']
           args:
