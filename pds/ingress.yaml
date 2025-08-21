@@ -46,4 +46,4 @@ spec:
       secretName: web5
     - hosts:
         - res.bbs.fans
-      secretName: web5
+      secretName: res
