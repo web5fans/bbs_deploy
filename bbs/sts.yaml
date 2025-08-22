@@ -26,19 +26,19 @@ spec:
             - name: PDS
               value: https://web5.bbs.fans
             - name: WHITELIST
-              value: did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil,did:web5:4uki5qsygxg2x2hjtjr4tydgympm5mns,did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv
+              value: did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil,did:web5:4uki5qsygxg2x2hjtjr4tydgympm5mns,did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv,did:web5:o3clxcnqrng2w4km2rkmhmihw5pox6zh,did:web5:artdh6a5buiyjqbdoww5nacx3jurnoam
           name: bbs
-          command: ['bbs']
+          command: ["bbs"]
           args:
             [
-              '--log-filter',
-              'debug,hyper_util=info,sqlx=info',
-              '--db-url',
-              '$(DB_URL)',
-              '--pds',
-              '$(PDS)',
-              '-w',
-              '$(WHITELIST)',
+              "--log-filter",
+              "debug,hyper_util=info,sqlx=info",
+              "--db-url",
+              "$(DB_URL)",
+              "--pds",
+              "$(PDS)",
+              "-w",
+              "$(WHITELIST)",
             ]
           ports:
             - containerPort: 8080
@@ -63,7 +63,7 @@ spec:
             - name: POSTGRES_DB
               value: app
             - name: POSTGRES_INITDB_ARGS
-              value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+              value: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
           ports:
             - containerPort: 5432
               name: postgres
@@ -83,7 +83,7 @@ spec:
     - metadata:
         name: database
       spec:
-        accessModes: ['ReadWriteOnce']
+        accessModes: ["ReadWriteOnce"]
         storageClassName: local-path
         resources:
           requests:
