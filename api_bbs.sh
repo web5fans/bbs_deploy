@@ -83,10 +83,23 @@ export did=
 # --- /api/section/list ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL'/api/repo/profile?repo=did:web5:5todaearszbwxyrluncvvx6by5ofuauj' \
+export rsp=$(curl --insecure -s $BASE_URL'/api/repo/profile?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
     -X GET \
     -H "Content-Type: application/json"
 )
 echo "
 --- /api/repo/profile ---
 response = $rsp"
+
+# export rsp=$(curl --insecure -s $BASE_URL/api/post/replied \
+#     -X POST \
+#     -H "Content-Type: application/json" \
+#     -d '{
+#             "repo": "did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil",
+#             "limit": 20,
+#             "cursor": "2025-08-12 05:25:37"
+#         }'
+# )
+# echo "
+# --- /api/post/replied ---
+# response = $rsp"
