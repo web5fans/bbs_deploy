@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: pds
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/rsky:v0.1.5
+        - image: registry.devops.rivtower.com/web5/rsky:v0.1.6
           imagePullPolicy: IfNotPresent
           env:
             - name: RUST_BACKTRACE
