@@ -83,13 +83,13 @@ export did=
 # --- /api/section/list ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL'/api/repo/profile?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
-    -X GET \
-    -H "Content-Type: application/json"
-)
-echo "
---- /api/repo/profile ---
-response = $rsp"
+# export rsp=$(curl --insecure -s $BASE_URL'/api/repo/profile?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
+#     -X GET \
+#     -H "Content-Type: application/json"
+# )
+# echo "
+# --- /api/repo/profile ---
+# response = $rsp"
 
 # export rsp=$(curl --insecure -s $BASE_URL/api/post/replied \
 #     -X POST \
@@ -103,3 +103,11 @@ response = $rsp"
 # echo "
 # --- /api/post/replied ---
 # response = $rsp"
+
+export rsp=$(curl --insecure -s $BASE_URL'/api/repo/login_info?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
+    -X GET \
+    -H "Content-Type: application/json"
+)
+echo "
+--- /api/repo/profile ---
+response = $rsp"
