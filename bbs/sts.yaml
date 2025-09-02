@@ -24,7 +24,7 @@ spec:
             - name: PORT
               value: '${BBS_PORT}'
             - name: DB_URL
-              value: postgres://postgres:postgres@localhost:${BBS_DB_PORT}/bbs
+              value: postgres://postgres:postgres@localhost/bbs
             - name: PDS
               value: https://${PDS_HOSTNAME}
             - name: WHITELIST
@@ -66,12 +66,10 @@ spec:
               value: postgres
             - name: POSTGRES_DB
               value: bbs
-            - name: POSTGRES_PORT
-              value: '${BBS_DB_PORT}'
             - name: POSTGRES_INITDB_ARGS
               value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
-            - containerPort: ${BBS_DB_PORT}
+            - containerPort: 5432
               name: postgres
               protocol: TCP
           resources:

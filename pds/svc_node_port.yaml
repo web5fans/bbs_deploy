@@ -13,7 +13,7 @@ spec:
       protocol: TCP
       nodePort: ${PDS_PORT}
     - name: postgres
-      port: ${PDS_DB_PORT}
+      port: 5432
       protocol: TCP
       nodePort: ${PDS_DB_PORT}
   selector:

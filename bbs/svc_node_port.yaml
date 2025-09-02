@@ -13,7 +13,7 @@ spec:
       protocol: TCP
       nodePort: ${BBS_PORT}
     - name: postgres
-      port: ${BBS_DB_PORT}
+      port: 5432
       protocol: TCP
       nodePort: ${BBS_DB_PORT}
   selector:

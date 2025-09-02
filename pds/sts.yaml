@@ -30,7 +30,7 @@ spec:
             - name: PDS_ADMIN_PASSWORD
               value: ${PDS_ADMIN_PASSWORD}
             - name: DATABASE_URL
-              value: 'postgres://postgres:postgres@localhost:${PDS_DB_PORT}/pds'
+              value: 'postgres://postgres:postgres@localhost/pds'
             - name: PDS_BLOBSTORE_DISK_LOCATION
               value: /pds/blobs
             - name: PDS_BSKY_APP_VIEW_DID
@@ -108,7 +108,7 @@ spec:
             - name: POSTGRES_INITDB_ARGS
               value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
-            - containerPort: ${PDS_DB_PORT}
+            - containerPort: 5432
               name: postgres
               protocol: TCP
           resources:

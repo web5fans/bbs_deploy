@@ -46,4 +46,4 @@ spec:
       secretName: web5
     - hosts:
         - ${RES_HOSTNAME}
-      secretName: res
+      secretName: web5
