@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # 设置环境变量
-export PDS_HOSTNAME=https://{$PDS_HOSTNAME}
+export BASE_URL=https://$PDS_HOSTNAME
 
 # xrpc/com.atproto.server.createSession
-export createSession_rsp=$(curl --insecure -s $PDS_HOSTNAME/xrpc/com.atproto.server.createSession \
+export createSession_rsp=$(curl --insecure -s $BASE_URL/xrpc/com.atproto.server.createSession \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"identifier": "did:web5:5todaearszbwxyrluncvvx6by5ofuauj", "password": "0x1e910cf624fcfb73fc2a2b26d6f0bca63b8b71cfa7f7027fdef9bce0a59251f0"}' | jq .)
@@ -15,7 +15,7 @@ echo "
 response = $createSession_rsp"
 
 # # /xrpc/app.bsky.actor.getProfile
-# export getProfile_rsp=$(curl --insecure -s -X GET $PDS_HOSTNAME/xrpc/app.bsky.actor.getProfile?actor=$did \
+# export getProfile_rsp=$(curl --insecure -s -X GET $BASE_URL/xrpc/app.bsky.actor.getProfile?actor=$did \
 #     -H "Content-Type: application/json" \
 #     -H "Authorization: Bearer "$accessJwt"" | jq .)
 # echo "
@@ -23,14 +23,14 @@ response = $createSession_rsp"
 # response = $getProfile_rsp"
 
 # # /xrpc/com.atproto.repo.describeRepo
-# export describeRepo_rsp=$(curl --insecure -s -X GET $PDS_HOSTNAME/xrpc/com.atproto.repo.describeRepo?repo=$did | jq .)
+# export describeRepo_rsp=$(curl --insecure -s -X GET $BASE_URL/xrpc/com.atproto.repo.describeRepo?repo=$did | jq .)
 # echo "
 # --- /xrpc/com.atproto.repo.describeRepo
 # response = $describeRepo_rsp"
 
 # /xrpc/com.atproto.repo.createRecord
 # export collection="app.bsky.feed.post"
-# export createRecord_rsp=$(curl --insecure -s $PDS_HOSTNAME/xrpc/com.atproto.repo.createRecord \
+# export createRecord_rsp=$(curl --insecure -s $BASE_URL/xrpc/com.atproto.repo.createRecord \
 #     -X POST \
 #     -H "Content-Type: application/json" \
 #     -H "Authorization: Bearer "$accessJwt"" \
@@ -43,7 +43,7 @@ response = $createSession_rsp"
 
 # /xrpc/com.atproto.repo.putRecord
 # export collection="app.actor.profile"
-# export createRecord_rsp=$(curl --insecure -s $PDS_HOSTNAME/xrpc/com.atproto.repo.putRecord \
+# export createRecord_rsp=$(curl --insecure -s $BASE_URL/xrpc/com.atproto.repo.putRecord \
 #     -X POST \
 #     -H "Content-Type: application/json" \
 #     -H "Authorization: Bearer "$accessJwt"" \
@@ -55,7 +55,7 @@ response = $createSession_rsp"
 # response = $createRecord_rsp"
 
 # /xrpc/com.atproto.repo.getRecord
-# export getRecord_api="$PDS_HOSTNAME/xrpc/com.atproto.repo.getRecord?repo=$did&collection=$collection&rkey=$rkey"
+# export getRecord_api="$BASE_URL/xrpc/com.atproto.repo.getRecord?repo=$did&collection=$collection&rkey=$rkey"
 # export getRecord_rsp=$(curl --insecure -s -X GET $getRecord_api | jq .)
 # echo "
 # --- /xrpc/com.atproto.repo.getRecord
@@ -65,7 +65,7 @@ response = $createSession_rsp"
 
 
 # # /xrpc/com.atproto.repo.applyWrites
-# export applyWrites_rsp=$(curl --insecure -s $PDS_HOSTNAME/xrpc/com.atproto.repo.applyWrites \
+# export applyWrites_rsp=$(curl --insecure -s $BASE_URL/xrpc/com.atproto.repo.applyWrites \
 #     -X POST \
 #     -H "Content-Type: application/json" \
 #     -H "Authorization: Bearer "$accessJwt"" \
@@ -76,7 +76,7 @@ response = $createSession_rsp"
 # response = $applyWrites_rsp"
 
 # /xrpc/com.atproto.identity.resolveIdentity
-export getRecord_api="$PDS_HOSTNAME/xrpc/com.atproto.identity.resolveIdentity?identifier=did:web5:5todaearszbwxyrluncvvx6by5ofuauj"
+export getRecord_api="$BASE_URL/xrpc/com.atproto.identity.resolveIdentity?identifier=did:web5:5todaearszbwxyrluncvvx6by5ofuauj"
 export getRecord_rsp=$(curl --insecure -s $getRecord_api \
     -X GET \
     -H "Content-Type: application/json" \
