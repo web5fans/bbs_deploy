@@ -5,9 +5,9 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: 'nginx'
   rules:
-    - host: app.bbs.fans
+    - host: ${APP_HOSTNAME}
       http:
         paths:
           - backend:
@@ -19,5 +19,5 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-      - app.bbs.fans
+        - ${APP_HOSTNAME}
       secretName: web5

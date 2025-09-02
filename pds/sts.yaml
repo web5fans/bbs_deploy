@@ -60,9 +60,9 @@ spec:
             - name: PDS_REPO_SIGNING_KEY_K256_PRIVATE_KEY_HEX
               value: ${PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX}
             - name: PDS_SERVICE_HANDLE_DOMAINS
-              value: '.web5.bbs.fans'
+              value: '.${PDS_HOSTNAME}'
             - name: AWS_ENDPOINT
-              value: 'https://res.bbs.fans'
+              value: 'https://${RES_HOSTNAME}'
             - name: AWS_ACCESS_KEY_ID
               value: test
             - name: AWS_SECRET_ACCESS_KEY
