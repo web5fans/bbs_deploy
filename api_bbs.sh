@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BASE_URL=https://{$APP_HOSTNAME}
+export BASE_URL=https://{$BBS_HOSTNAME}
 export TOKEN=
 export did=
 

@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: pds
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/rsky:v0.1.6
+        - image: registry.devops.rivtower.com/web5/rsky:${PDS_VERSION}
           imagePullPolicy: IfNotPresent
           env:
             - name: RUST_BACKTRACE
@@ -30,13 +30,13 @@ spec:
             - name: PDS_ADMIN_PASSWORD
               value: ${PDS_ADMIN_PASSWORD}
             - name: DATABASE_URL
-              value: 'postgres://postgres:postgres@localhost:5432/pds'
+              value: 'postgres://postgres:postgres@localhost:${PDS_DB_PORT}/pds'
             - name: PDS_BLOBSTORE_DISK_LOCATION
               value: /pds/blobs
             - name: PDS_BSKY_APP_VIEW_DID
-              value: did:web:${APP_HOSTNAME}
+              value: did:web:${BBS_HOSTNAME}
             - name: PDS_BSKY_APP_VIEW_URL
-              value: https://${APP_HOSTNAME}
+              value: https://${BBS_HOSTNAME}
             - name: PDS_ENABLE_DID_DOC_WITH_SESSION
               value: 'true'
             - name: PDS_HOSTNAME
@@ -108,7 +108,7 @@ spec:
             - name: POSTGRES_INITDB_ARGS
               value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
-            - containerPort: 5432
+            - containerPort: ${PDS_DB_PORT}
               name: postgres
               protocol: TCP
           resources:

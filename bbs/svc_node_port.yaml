@@ -8,10 +8,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - name: postgres
-      port: 5432
+    - name: bbs
+      port: ${BBS_PORT}
       protocol: TCP
-      nodePort: 32433
+      nodePort: ${BBS_PORT}
+    - name: postgres
+      port: ${BBS_DB_PORT}
+      protocol: TCP
+      nodePort: ${BBS_DB_PORT}
   selector:
     app.kubernetes.io/instance: bbs
     app.kubernetes.io/name: bbs
