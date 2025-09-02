@@ -7,17 +7,17 @@ metadata:
 spec:
   ingressClassName: 'nginx'
   rules:
-    - host: ${APP_HOSTNAME}
+    - host: ${BBS_HOSTNAME}
       http:
         paths:
           - backend:
               service:
                 name: bbs
                 port:
-                  number: 8080
+                  number: ${BBS_PORT}
             path: /
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - ${APP_HOSTNAME}
+        - ${BBS_HOSTNAME}
       secretName: web5

@@ -9,9 +9,9 @@ spec:
   type: ClusterIP
   ports:
     - name: http
-      port: 8080
+      port: ${BBS_PORT}
       protocol: TCP
-      targetPort: 8080
+      targetPort: ${BBS_PORT}
   selector:
     app.kubernetes.io/instance: bbs
     app.kubernetes.io/name: bbs

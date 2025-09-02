@@ -18,21 +18,25 @@ spec:
         app.kubernetes.io/name: bbs
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/bbs:v0.2.60
+        - image: registry.devops.rivtower.com/web5/bbs:${BBS_VERSION}
           imagePullPolicy: Always
           env:
+            - name: PORT
+              value: ${BBS_PORT}
             - name: DB_URL
-              value: postgres://postgres:postgres@localhost/app
+              value: postgres://postgres:postgres@localhost:${BBS_DB_PORT}/bbs
             - name: PDS
               value: https://${PDS_HOSTNAME}
             - name: WHITELIST
-              value: did:web5:wr2zzk7ljy64swa6akrmi7zxwysztvil,did:web5:4uki5qsygxg2x2hjtjr4tydgympm5mns,did:web5:vcm3yb7wk5uxdj7f4nsweowkokmwmdyv,did:web5:o3clxcnqrng2w4km2rkmhmihw5pox6zh,did:web5:artdh6a5buiyjqbdoww5nacx3jurnoam,did:web5:ri6nrmqbglbwc54zry74auefutshwdwv,did:web5:f57lf4iekzbhchqk2hepnl7dsjme62wk
+              value: ${WHITELIST}
           name: bbs
           command: ['bbs']
           args:
             [
               '--log-filter',
               'debug,hyper_util=info,sqlx=info',
+              '--port',
+              '$(PORT)',
               '--db-url',
               '$(DB_URL)',
               '--pds',
@@ -41,7 +45,7 @@ spec:
               '$(WHITELIST)',
             ]
           ports:
-            - containerPort: 8080
+            - containerPort: ${BBS_PORT}
               name: http
               protocol: TCP
           resources:
@@ -61,11 +65,11 @@ spec:
             - name: POSTGRES_PASSWORD
               value: postgres
             - name: POSTGRES_DB
-              value: app
+              value: bbs
             - name: POSTGRES_INITDB_ARGS
               value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
-            - containerPort: 5432
+            - containerPort: ${BBS_DB_PORT}
               name: postgres
               protocol: TCP
           resources:
