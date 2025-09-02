@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置环境变量
-export PDS_HOSTNAME=https://web5.bbs.fans
+export PDS_HOSTNAME=https://{$PDS_HOSTNAME}
 
 # xrpc/com.atproto.server.createSession
 export createSession_rsp=$(curl --insecure -s $PDS_HOSTNAME/xrpc/com.atproto.server.createSession \

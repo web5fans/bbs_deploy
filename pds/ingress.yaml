@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: 'nginx'
   rules:
-    - host: web5.bbs.fans
+    - host: ${PDS_HOSTNAME}
       http:
         paths:
           - backend:
@@ -17,7 +17,7 @@ spec:
                   number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
-    - host: '*.web5.bbs.fans'
+    - host: '*.${PDS_HOSTNAME}'
       http:
         paths:
           - backend:
@@ -27,7 +27,7 @@ spec:
                   number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
-    - host: res.bbs.fans
+    - host: ${RES_HOSTNAME}
       http:
         paths:
           - backend:
@@ -39,11 +39,11 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - web5.bbs.fans
+        - ${PDS_HOSTNAME}
       secretName: web5
     - hosts:
-        - '*.web5.bbs.fans'
+        - '*.${PDS_HOSTNAME}'
       secretName: web5
     - hosts:
-        - res.bbs.fans
+        - ${RES_HOSTNAME}
       secretName: res
