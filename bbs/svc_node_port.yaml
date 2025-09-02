@@ -15,7 +15,7 @@ spec:
     - name: postgres
       port: 5432
       protocol: TCP
-      nodePort: ${BBS_DB_PORT}
+      nodePort: ${BBS_DB_NODE_PORT}
   selector:
     app.kubernetes.io/instance: bbs
     app.kubernetes.io/name: bbs
