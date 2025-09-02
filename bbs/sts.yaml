@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: PORT
-              value: ${BBS_PORT}
+              value: '${BBS_PORT}'
             - name: DB_URL
               value: postgres://postgres:postgres@localhost:${BBS_DB_PORT}/bbs
             - name: PDS
