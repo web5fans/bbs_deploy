@@ -31,6 +31,8 @@ spec:
               value: ckb_testnet
             - name: START_HEIGHT
               value: '17_993_051'
+            - name: CODE_HASH
+              value: '510150477b10d6ab551a509b71265f3164e9fd4137fcb5a4322f49f03092c7c5'
           name: indexer
           ports:
             - containerPort: ${INDEXER_PORT}
