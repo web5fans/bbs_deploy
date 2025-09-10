@@ -21,8 +21,8 @@ spec:
         - image: registry.devops.rivtower.com/web5/indexer:${INDEXER_VERSION}
           imagePullPolicy: Always
           env:
-            - name: LOG_LEVEL
-              value: trace
+            # - name: LOG_LEVEL
+            #   value: trace
             - name: LISTEN_PORT
               value: '${INDEXER_PORT}'
             - name: DATABASE_URL
