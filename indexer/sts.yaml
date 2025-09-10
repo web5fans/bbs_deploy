@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: indexer
+    app.kubernetes.io/name: indexer
+  name: indexer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: indexer
+      app.kubernetes.io/name: indexer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: indexer
+        app.kubernetes.io/name: indexer
+    spec:
+      containers:
+        - image: registry.devops.rivtower.com/web5/indexer:${INDEXER_VERSION}
+          imagePullPolicy: Always
+          env:
+            - name: LISTEN_PORT
+              value: '${INDEXER_PORT}'
+            - name: DATABASE_URL
+              value: postgres://postgres:postgres@localhost/indexer
+            - name: CKB_NODE
+              value: https://testnet.ckb.dev
+            - name: CKB_NETWORK
+              value: ckb_testnet
+            - name: START_HEIGHT
+              value: '17_993_051'
+          name: indexer
+          ports:
+            - containerPort: ${INDEXER_PORT}
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext: {}
+        - image: m.daocloud.io/docker.io/postgres:17-bookworm
+          imagePullPolicy: IfNotPresent
+          name: database
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: indexer
+            - name: POSTGRES_INITDB_ARGS
+              value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+          ports:
+            - containerPort: 5432
+              name: postgres
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: database
+  volumeClaimTemplates:
+    - metadata:
+        name: database
+      spec:
+        accessModes: ['ReadWriteOnce']
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 50Gi

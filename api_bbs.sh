@@ -19,20 +19,17 @@ export did=
 # --- /api/record/create ---
 # response = $rsp"
 
-# export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
-#     -X POST \
-#     -H "Content-Type: application/json" \
-#     -d '{
-#             "section_id": "1",
-#             "repo": "",
-#             "limit": 20,
-#             "cursor": "2025-08-12 05:25:37",
-#             "q": ""
-#         }'
-# )
-# echo "
-# --- /api/post/list ---
-# response = $rsp"
+export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+            "limit": 1,
+            "cursor":"1757382443"
+        }'
+)
+echo "
+--- /api/post/list ---
+response = $rsp"
 
 # export rsp=$(curl --insecure -s $BASE_URL/api/post/top \
 #     -X POST \
@@ -104,10 +101,23 @@ export did=
 # --- /api/post/replied ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL'/api/repo/login_info?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
-    -X GET \
-    -H "Content-Type: application/json"
-)
-echo "
---- /api/repo/profile ---
-response = $rsp"
+# export rsp=$(curl --insecure -s $BASE_URL'/api/repo/login_info?repo=did:web5:vcm3vb7wk5uxdj7f4nsweowkokmwmdyv' \
+#     -X GET \
+#     -H "Content-Type: application/json"
+# )
+# echo "
+# --- /api/repo/profile ---
+# response = $rsp"
+
+# export rsp=$(curl --insecure -s $BASE_URL/api/like/list \
+#     -X POST \
+#     -H "Content-Type: application/json" \
+#     -d '{
+#             "to": "at://did:web5:cywsrenljk2b7akmr2zuoawnbwshnz6o/app.bbs.post/3lychgs5zbk2p",
+#             "limit": 30,
+#             "cursor": "2025-08-12 05:25:37"
+#         }'
+# )
+# echo "
+# --- /api/like/list ---
+# response = $rsp"

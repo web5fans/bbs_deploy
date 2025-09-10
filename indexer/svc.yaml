@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: indexer
+  labels:
+    app.kubernetes.io/instance: indexer
+    app.kubernetes.io/name: indexer
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: ${INDEXER_PORT}
+      protocol: TCP
+      targetPort: ${INDEXER_PORT}
+  selector:
+    app.kubernetes.io/instance: indexer
+    app.kubernetes.io/name: indexer
