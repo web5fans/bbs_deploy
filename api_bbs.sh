@@ -19,17 +19,17 @@ export did=
 # --- /api/record/create ---
 # response = $rsp"
 
-export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-            "limit": 1,
-            "cursor":"1757382443"
-        }'
-)
-echo "
---- /api/post/list ---
-response = $rsp"
+# export rsp=$(curl --insecure -s $BASE_URL/api/post/list \
+#     -X POST \
+#     -H "Content-Type: application/json" \
+#     -d '{
+#             "limit": 1,
+#             "cursor":"1757382443"
+#         }'
+# )
+# echo "
+# --- /api/post/list ---
+# response = $rsp"
 
 # export rsp=$(curl --insecure -s $BASE_URL/api/post/top \
 #     -X POST \
@@ -50,19 +50,18 @@ response = $rsp"
 # --- /api/post/detail ---
 # response = $rsp"
 
-# export rsp=$(curl --insecure -s $BASE_URL/api/reply/list \
-#     -X POST \
-#     -H "Content-Type: application/json" \
-#     -d '{
-#             "root": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
-#             "parent": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
-#             "page": 1,
-#             "per_page": 20
-#         }'
-# )
-# echo "
-# --- /api/reply/list ---
-# response = $rsp"
+export rsp=$(curl --insecure -s $BASE_URL/api/reply/list \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+            "comment": "at://did:web5:ted6fucylsy4kffqps2ombhaaf4k2jw4/app.bbs.post/3lwdzv3afks2k",
+            "limit": 5,
+            "corsur": ""
+        }'
+)
+echo "
+--- /api/reply/list ---
+response = $rsp"
 
 # export rsp=$(curl --insecure -s $BASE_URL/api/section/detail?id=1 \
 #     -X GET \
