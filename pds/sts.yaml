@@ -119,7 +119,7 @@ spec:
               memory: 4096Mi
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: 256Mi
           securityContext: {}
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
@@ -146,7 +146,7 @@ spec:
               memory: 4096Mi
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: 256Mi
           securityContext: {}
           volumeMounts:
             - mountPath: /var/lib/localstack/data
