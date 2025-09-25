@@ -76,7 +76,7 @@ spec:
             - name: ROCKET_ADDRESS
               value: '0.0.0.0'
             - name: INDEXER_URL
-              value: 'http://indexer:${INDEXER_PORT}/'
+              value: '${INDEXER_URL}'
           name: pds
           command:
             - /bin/sh
