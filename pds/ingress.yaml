@@ -34,7 +34,7 @@ spec:
               service:
                 name: pds
                 port:
-                  number: 4566
+                  number: 9000
             path: /
             pathType: ImplementationSpecific
   tls:
