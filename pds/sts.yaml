@@ -64,13 +64,13 @@ spec:
             - name: AWS_ENDPOINT
               value: 'https://${RES_HOSTNAME}'
             - name: AWS_ACCESS_KEY_ID
-              value: test
+              value: admin
             - name: AWS_SECRET_ACCESS_KEY
-              value: test
+              value: password123
             - name: AWS_DEFAULT_REGION
               value: us-east-1
             - name: AWS_PROVIDE_NAME
-              value: localstack
+              value: minio
             - name: ROCKET_PORT
               value: '${PDS_PORT}'
             - name: ROCKET_ADDRESS
