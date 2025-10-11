@@ -29,6 +29,8 @@ spec:
               value: https://${PDS_HOSTNAME}
             - name: WHITELIST
               value: ${WHITELIST}
+            - name: INDEXER
+              value: ${INDEXER_URL}
           name: bbs
           command: ['bbs']
           args:
@@ -41,6 +43,8 @@ spec:
               '$(DB_URL)',
               '--pds',
               '$(PDS)',
+              '--indexer',
+              '$(INDEXER)',
               '-w',
               '$(WHITELIST)',
             ]
