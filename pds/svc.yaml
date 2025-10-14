@@ -13,9 +13,9 @@ spec:
       protocol: TCP
       targetPort: ${PDS_PORT}
     - name: res
-      port: 9000
+      port: 4566
       protocol: TCP
-      targetPort: 9000
+      targetPort: 4566
   selector:
     app.kubernetes.io/instance: pds
     app.kubernetes.io/name: pds
