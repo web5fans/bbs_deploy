@@ -137,7 +137,7 @@ spec:
             - name: SERVICES
               value: 's3'
             - name: LOCALSTACK_CORS_ENABLED
-              value: 1
+              value: '1'
           ports:
             - containerPort: 4566
               name: localstack
