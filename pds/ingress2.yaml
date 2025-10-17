@@ -19,8 +19,6 @@ spec:
                   number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
-            annotations:
-              nginx.ingress.kubernetes.io/rewrite-target: /handle-redirect
   tls:
     - hosts:
         - ${PDS_HOSTNAME}
