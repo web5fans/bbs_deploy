@@ -4,10 +4,12 @@ metadata:
   name: pds-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/preserve-host: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /handle-redirect
 spec:
   ingressClassName: 'nginx'
   rules:
-    - host: ${PDS_HOSTNAME}
+    - host: '*.${PDS_HOSTNAME}'
       http:
         paths:
           - backend:
@@ -17,20 +19,9 @@ spec:
                   number: ${PDS_PORT}
             path: /
             pathType: ImplementationSpecific
-    - host: ${RES_HOSTNAME}
-      http:
-        paths:
-          - backend:
-              service:
-                name: pds
-                port:
-                  number: 4566
-            path: /
-            pathType: ImplementationSpecific
+            annotations:
+              nginx.ingress.kubernetes.io/rewrite-target: /handle-redirect
   tls:
     - hosts:
         - ${PDS_HOSTNAME}
       secretName: web5
-    - hosts:
-        - ${RES_HOSTNAME}
-      secretName: res
