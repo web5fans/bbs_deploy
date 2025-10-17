@@ -80,7 +80,7 @@ spec:
             - name: USER_PROFILE_URL
               value: 'http://bbs.fans/profile'
             - name: DID_PREFIX
-              value: 'did:ckb'
+              value: 'did:web5'
           name: pds
           command:
             - /bin/sh
