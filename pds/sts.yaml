@@ -77,6 +77,10 @@ spec:
               value: '0.0.0.0'
             - name: INDEXER_URL
               value: '${INDEXER_URL}/'
+            - name: USER_PROFILE_URL
+              value: 'http://bbs.fans/profile'
+            - name: DID_PREFIX
+              value: 'did:ckb'
           name: pds
           command:
             - /bin/sh
