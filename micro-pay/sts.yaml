@@ -2,66 +2,48 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app.kubernetes.io/instance: bbs
-    app.kubernetes.io/name: bbs
-  name: bbs
+    app.kubernetes.io/instance: micro-pay
+    app.kubernetes.io/name: micro-pay
+  name: micro-pay
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: bbs
-      app.kubernetes.io/name: bbs
+      app.kubernetes.io/instance: micro-pay
+      app.kubernetes.io/name: micro-pay
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: bbs
-        app.kubernetes.io/name: bbs
+        app.kubernetes.io/instance: micro-pay
+        app.kubernetes.io/name: micro-pay
     spec:
       containers:
-        - image: registry.devops.rivtower.com/web5/bbs:${BBS_VERSION}
+        - image: registry.devops.rivtower.com/web5/micro-pay:${MICRO_PAY_VERSION}
           imagePullPolicy: Always
           env:
+            - name: DB_HOST
+              value: localhost
+            - name: DB_PORT
+              value: 5432
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: '123456'
+            - name: DB_NAME
+              value: postgres
             - name: PORT
-              value: '${BBS_PORT}'
-            - name: DB_URL
-              value: postgres://postgres:postgres@localhost/bbs
-            - name: PDS
-              value: https://${PDS_HOSTNAME}
-            - name: WHITELIST
-              value: ${WHITELIST}
-            - name: INDEXER
-              value: ${INDEXER_URL}
-            - name: CKB_URL
-              value: ${CKB_URL}
-            - name: BBS_CKB_ADDR
-              value: ${BBS_CKB_ADDR}
-            - name: PAY_URL
-              value: ${PAY_URL}
-          name: bbs
-          command: ['bbs']
-          args:
-            [
-              '--log-filter',
-              'debug,hyper_util=info,sqlx=info',
-              '--port',
-              '$(PORT)',
-              '--db-url',
-              '$(DB_URL)',
-              '--pds',
-              '$(PDS)',
-              '--indexer',
-              '$(INDEXER)',
-              '-w',
-              '$(WHITELIST)',
-              '--ckb-url',
-              '$(CKB_URL)',
-              '--bbs-ckb-addr',
-              '$(BBS_CKB_ADDR)',
-              '--pay-url',
-              '$(PAY_URL)',
-            ]
+              value: ${MICRO_PAY_PORT}
+            - name: PLATFORM_MNEMONIC
+              value: calm gown solid jaguar card web paper loan scale sister rebel syrup
+            - name: PLATFORM_ADDRESS_COUNT
+              value: 2
+            - name: CKB_NODE_URL
+              value: https://testnet.ckb.dev/rpc
+            - name: CKB_NETWORK
+              value: ckb_testnet
+          name: micro-pay
           ports:
-            - containerPort: ${BBS_PORT}
+            - containerPort: ${MICRO_PAY_PORT}
               name: http
               protocol: TCP
           resources:
@@ -79,9 +61,9 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: postgres
+              value: 123456
             - name: POSTGRES_DB
-              value: bbs
+              value: postgres
             - name: POSTGRES_INITDB_ARGS
               value: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
           ports:
