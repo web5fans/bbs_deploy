@@ -24,7 +24,7 @@ spec:
             - name: DB_HOST
               value: localhost
             - name: DB_PORT
-              value: 5432
+              value: '5432'
             - name: DB_USER
               value: postgres
             - name: DB_PASSWORD
@@ -32,11 +32,11 @@ spec:
             - name: DB_NAME
               value: postgres
             - name: PORT
-              value: ${MICRO_PAY_PORT}
+              value: '${MICRO_PAY_PORT}'
             - name: PLATFORM_MNEMONIC
               value: calm gown solid jaguar card web paper loan scale sister rebel syrup
             - name: PLATFORM_ADDRESS_COUNT
-              value: 2
+              value: '2'
             - name: CKB_NODE_URL
               value: https://testnet.ckb.dev/rpc
             - name: CKB_NETWORK
@@ -61,7 +61,7 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: 123456
+              value: '123456'
             - name: POSTGRES_DB
               value: postgres
             - name: POSTGRES_INITDB_ARGS
