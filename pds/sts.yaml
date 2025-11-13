@@ -78,7 +78,7 @@ spec:
             - name: INDEXER_URL
               value: '${INDEXER_URL}'
             - name: USER_PROFILE_URL
-              value: 'https://${HOSTNAME}/profile'
+              value: 'https://${HOSTNAME}/profile/'
             - name: DID_PREFIX
               value: did:ckb
             - name: CKB_NETWORK
