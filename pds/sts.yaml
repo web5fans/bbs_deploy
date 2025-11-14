@@ -130,20 +130,21 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: database
-        - image: m.daocloud.io/docker.io/minio/minio:latest
+        - image: m.daocloud.io/docker.io/localstack/localstack:latest
           imagePullPolicy: IfNotPresent
-          name: minio
+          name: localstack
           env:
-            - name: MINIO_ROOT_USER
-              value: 'admin'
-            - name: MINIO_ROOT_PASSWORD
-              value: 'password123'
-            - name: MINIO_REGION_NAME
+            - name: AWS_ACCESS_KEY_ID
+              value: 'test'
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 'test'
+            - name: AWS_DEFAULT_REGION
               value: 'us-east-1'
-          args: ["server", "/data", "--console-address", ":9001"]
+            - name: SERVICES
+              value: 's3'
           ports:
-            - containerPort: 9000
-              name: minio
+            - containerPort: 4566
+              name: localstack
               protocol: TCP
           resources:
             limits:
@@ -154,8 +155,8 @@ spec:
               memory: 256Mi
           securityContext: {}
           volumeMounts:
-            - mountPath: /data
-              name: minio
+            - mountPath: /var/lib/localstack/data
+              name: localstack
   volumeClaimTemplates:
     - metadata:
         name: pds
@@ -174,7 +175,7 @@ spec:
           requests:
             storage: 50Gi
     - metadata:
-        name: minio
+        name: localstack
       spec:
         accessModes: ['ReadWriteOnce']
         storageClassName: local-path
